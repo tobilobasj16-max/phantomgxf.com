@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom.GXF.Giveaway - Official Channel Hub</title>
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Phantom.GXF.Giveaway%22%2C%22short_name%22%3A%22PhantomGiveaway%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230b0f19%22%2C%22theme_color%22%3A%22%232563eb%22%7D">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Tailwind CSS for high-performance responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0b0f19;
+            color: #f8fafc;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+    <header class="bg-slate-900/85 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo with 15x Secret Click Trigger & Exclusive Owner Protection -->
+            <div class="flex items-center gap-3 cursor-pointer select-none group">
+                <div id="secret-admin-trigger" class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-xl flex items-center justify-center font-black text-xl brand-font shadow-[0_0_15px_rgba(37,99,235,0.4)] group-hover:scale-105 transition-transform" title="Official Channel Identifier">
+                    G
+                </div>
+                <div>
+                    <h1 class="font-black text-lg tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 brand-font">
+                        Phantom.GXF.Giveaway
+                    </h1>
+                    <p class="text-xs text-slate-400 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Official Channel Hub
+                    </p>
+                </div>
+            </div>
+
+            <!-- User Status & Share Actions -->
+            <div class="flex items-center gap-3">
+                <div id="user-pill" class="hidden bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs flex items-center gap-2">
+                    <span class="text-slate-400">User:</span> <strong id="header-username" class="text-white"></strong>
+                    <span class="bg-blue-600/30 text-blue-400 px-2 py-0.5 rounded-md font-bold"><span id="header-points">0</span> pts</span>
+                </div>
+                <button onclick="shareWebsite()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-2 rounded-xl transition-all shadow-md flex items-center gap-1.5 brand-font uppercase">
+                    Copy Link
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        <!-- Announcement Banner -->
+        <div class="bg-gradient-to-r from-blue-900/30 via-indigo-900/30 to-slate-900/50 border border-blue-500/20 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
+            <div class="space-y-1 text-center md:text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-lg border border-blue-500/20">2-Week Mega Event</span>
+                <h2 class="text-xl md:text-2xl font-black brand-font text-white">Download Games & Earn Points to Win!</h2>
+                <p class="text-sm text-slate-300 max-w-2xl">Click download on your favorite games below to accumulate points. Admin will review top point holders after 2 weeks for the official giveaway prize!</p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 text-center min-w-[160px]">
+                <div class="text-xs text-slate-400 font-medium">Giveaway Status</div>
+                <div id="status-badge" class="text-sm font-bold mt-1 text-emerald-400 uppercase tracking-wide">Active Online</div>
+            </div>
+        </div>
+
+        <!-- Registration Card -->
+        <div id="auth-card" class="max-w-md mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="text-center space-y-1">
+                <h3 class="text-lg font-black brand-font text-white">Join the Giveaway</h3>
+                <p class="text-xs text-slate-400">Enter your YouTube username or Game ID to track your points.</p>
+            </div>
+            <div class="space-y-3">
+                <input type="text" id="username-input" placeholder="e.g. PhantomGamer99" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <button onclick="registerUser()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3 rounded-xl shadow-lg brand-font text-sm uppercase tracking-wide transition-all">
+                    Start Earning Points
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Games Grid -->
+        <div id="dashboard-section" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-black brand-font text-white flex items-center gap-2">
+                    Available Downloads & Offline Games
+                </h3>
+                <span class="text-xs text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">Limit: 10,000 Pts / Download</span>
+            </div>
+
+            <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated games -->
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500 space-y-2">
+        <p>© 2026 Phantom.GXF.Giveaway. All rights reserved. Official YouTube Channel Community Event.</p>
+        <p class="text-slate-600">Unauthorized intrusion attempts trigger automated security restrictions.</p>
+    </footer>
+
+    <!-- Secure Password Modal for Admin Access -->
+    <div id="admin-login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-sm w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="text-center space-y-1">
+                <div class="w-12 h-12 bg-blue-600/20 border border-blue-500 text-blue-400 rounded-xl mx-auto flex items-center justify-center font-black text-xl brand-font">
+                    🔒
+                </div>
+                <h3 class="text-base font-black brand-font text-white">Owner Authorization</h3>
+                <p class="text-xs text-slate-400">Enter your secure admin passcode to access the control portal.</p>
+            </div>
+            <div class="space-y-3">
+                <input type="password" id="admin-password-input" placeholder="Enter password..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                <div class="flex gap-2">
+                    <button onclick="closeAdminLogin()" class="w-1/2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2.5 rounded-xl text-xs transition-all">
+                        Cancel
+                    </button>
+                    <button onclick="submitAdminPassword()" class="w-1/2 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs brand-font transition-all">
+                        Unlock
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h3 class="text-lg font-black brand-font text-blue-400">Phantom.GXF Admin Dashboard</h3>
+                <button onclick="closeAdmin()" class="text-slate-400 hover:text-white font-bold text-sm bg-slate-800 px-3 py-1 rounded-xl">Close</button>
+            </div>
+
+            <!-- Admin Controls -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                    <h4 class="font-bold text-sm text-white brand-font">Giveaway State</h4>
+                    <p class="text-xs text-slate-400">Toggle whether users can earn points.</p>
+                    <button id="toggle-giveaway-btn" onclick="toggleGiveawayState()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition-all">
+                        Giveaway: ACTIVE
+                    </button>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                    <h4 class="font-bold text-sm text-white brand-font">Points Reset</h4>
+                    <p class="text-xs text-slate-400">Clear all user points for a fresh event.</p>
+                    <button onclick="resetAllPoints()" class="w-full bg-red-600/80 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-xl text-xs transition-all">
+                        Reset Leaderboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Game Form with custom picture upload support -->
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                <h4 class="font-bold text-sm text-white brand-font">Add New Download / Game (Custom Image URL)</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input type="text" id="new-game-title" placeholder="Game Title" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    <input type="text" id="new-game-image" placeholder="Image URL (e.g. Imgur link)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                    <input type="number" id="new-game-points" placeholder="Points Value" max="10000" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                </div>
+                <button onclick="addNewGame()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-xl text-xs brand-font transition-all">
+                    Publish Game to Website
+                </button>
+            </div>
+
+            <!-- Leaderboard Table -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-sm text-white brand-font">Participant Leaderboard (Live)</h4>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-900 text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-3">Rank</th>
+                                <th class="p-3">Username / ID</th>
+                                <th class="p-3 text-right">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-leaderboard-body" class="divide-y divide-slate-900">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const OFFICIAL_URL = "https://Phantom.GXF.Giveaway";
+        const ADMIN_DEVICE_TOKEN = "gxf_owner_verified_auth_token_9981";
+        const ADMIN_SECRET_KEY = "GXF-OWNER-2026-KEY";
+
+        let state = {
+            currentUser: localStorage.getItem('gxf_user') || null,
+            points: parseInt(localStorage.getItem('gxf_points') || '0'),
+            isGiveawayActive: localStorage.getItem('gxf_active') !== 'false',
+            isBanned: localStorage.getItem('gxf_banned') === 'true',
+            games: JSON.parse(localStorage.getItem('gxf_games') || JSON.stringify([
+                { id: '1', title: 'Mech Arena Official', image: 'https://placehold.co/600x400/1e293b/38bdf8?text=Mech+Arena', points: 5000 },
+                { id: '2', title: 'Cyber Ops Online', image: 'https://placehold.co/600x400/1e293b/38bdf8?text=Cyber+Ops', points: 3500 },
+                { id: '3', title: 'Apex Strike Mobile', image: 'https://placehold.co/600x400/1e293b/38bdf8?text=Apex+Strike', points: 4000 }
+            ])),
+            users: JSON.parse(localStorage.getItem('gxf_users') || JSON.stringify({}))
+        };
+
+        function saveState() {
+            localStorage.setItem('gxf_user', state.currentUser || '');
+            localStorage.setItem('gxf_points', state.points.toString());
+            localStorage.setItem('gxf_active', state.isGiveawayActive.toString());
+            localStorage.setItem('gxf_banned', state.isBanned.toString());
+            localStorage.setItem('gxf_games', JSON.stringify(state.games));
+            localStorage.setItem('gxf_users', JSON.stringify(state.users));
+        }
+
+        window.onload = function() {
+            if (state.isBanned) {
+                document.body.innerHTML = `
+                    <div class="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-center space-y-4">
+                        <div class="w-16 h-16 bg-red-600/20 border border-red-500 text-red-500 rounded-2xl flex items-center justify-center font-black text-2xl brand-font shadow-[0_0_30px_rgba(239,68,68,0.4)]">
+                            !
+                        </div>
+                        <h1 class="text-2xl font-black brand-font text-red-500">ACCESS PERMANENTLY BLOCKED</h1>
+                        <p class="text-sm text-slate-400 max-w-md">Your browser session has been automatically banned and blacklisted due to an unauthorized intrusion attempt on the restricted administrator control portal.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (state.currentUser) {
+                document.getElementById('auth-card').classList.add('hidden');
+                document.getElementById('dashboard-section').classList.remove('hidden');
+                document.getElementById('user-pill').classList.remove('hidden');
+                document.getElementById('header-username').innerText = state.currentUser;
+                document.getElementById('header-points').innerText = state.points.toLocaleString();
+            }
+            renderGames();
+            updateGiveawayStatusUI();
+            setupSecretAdminTrigger();
+        };
+
+        function registerUser() {
+            const input = document.getElementById('username-input').value.trim();
+            if (!input) {
+                alert("Please enter a valid username or ID!");
+                return;
+            }
+            state.currentUser = input;
+            if (!state.users[input]) {
+                state.users[input] = 0;
+            } else {
+                state.points = state.users[input];
+            }
+            saveState();
+
+            document.getElementById('auth-card').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            document.getElementById('user-pill').classList.remove('hidden');
+            document.getElementById('header-username').innerText = state.currentUser;
+            document.getElementById('header-points').innerText = state.points.toLocaleString();
+            renderGames();
+        }
+
+        function renderGames() {
+            const grid = document.getElementById('games-grid');
+            grid.innerHTML = '';
+
+            state.games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg flex flex-col justify-between group hover:border-slate-700 transition-all";
+                card.innerHTML = `
+                    <div>
+                        <div class="h-48 overflow-hidden bg-slate-950 relative">
+                            <img src="${game.image}" onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Game+Asset'" alt="${game.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1 rounded-xl shadow-md">
+                                +${game.points.toLocaleString()} Pts
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-1">
+                            <h4 class="font-black text-white text-base brand-font">${game.title}</h4>
+                            <p class="text-xs text-slate-400">Click download below to verify installation and earn points.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button onclick="downloadGame('${game.id}', ${game.points})" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs brand-font transition-all shadow-md flex items-center justify-center gap-2">
+                            Download Game
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function downloadGame(gameId, pointsEarned) {
+            if (!state.isGiveawayActive) {
+                alert("The giveaway is currently closed by the admin. Points cannot be earned right now.");
+                return;
+            }
+
+            state.points += pointsEarned;
+            if (state.points > 1000000) state.points = 1000000;
+            state.users[state.currentUser] = state.points;
+            saveState();
+
+            document.getElementById('header-points').innerText = state.points.toLocaleString();
+            alert(`Download verified! Added +${pointsEarned.toLocaleString()} points to your profile.`);
+        }
+
+        function shareWebsite() {
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = OFFICIAL_URL;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert("Official URL copied to clipboard: " + OFFICIAL_URL);
+        }
+
+        // 15-Click Secret Admin Trigger with Exclusive Owner Protection
+        let clickCount = 0;
+        let clickTimer = null;
+        function setupSecretAdminTrigger() {
+            const trigger = document.getElementById('secret-admin-trigger');
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                clickCount++;
+                clearTimeout(clickTimer);
+                
+                if (clickCount >= 15) {
+                    clickCount = 0;
+                    verifyAdminAccess();
+                } else {
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 3500);
+                }
+            });
+        }
+
+        function verifyAdminAccess() {
+            const hasOwnerToken = localStorage.getItem(ADMIN_DEVICE_TOKEN) === 'true';
+
+            if (!hasOwnerToken) {
+                // Open our custom secure password modal instead of prompt
+                document.getElementById('admin-password-input').value = '';
+                document.getElementById('admin-login-modal').classList.remove('hidden');
+                setTimeout(() => document.getElementById('admin-password-input').focus(), 100);
+            } else {
+                openAdminPortal();
+            }
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+        }
+
+        function submitAdminPassword() {
+            const val = document.getElementById('admin-password-input').value;
+            if (val === "Gxf3264$") {
+                localStorage.setItem(ADMIN_DEVICE_TOKEN, 'true');
+                closeAdminLogin();
+                openAdminPortal();
+            } else {
+                alert("Access Denied: Incorrect Admin Key.");
+                document.getElementById('admin-password-input').value = '';
+            }
+        }
+
+        function openAdminPortal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            renderAdminLeaderboard();
+        }
+
+        function closeAdmin() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function toggleGiveawayState() {
+            state.isGiveawayActive = !state.isGiveawayActive;
+            saveState();
+            updateGiveawayStatusUI();
+            alert("Giveaway state updated successfully!");
+        }
+
+        function updateGiveawayStatusUI() {
+            const btn = document.getElementById('toggle-giveaway-btn');
+            const badge = document.getElementById('status-badge');
+            if (state.isGiveawayActive) {
+                if(btn) {
+                    btn.innerText = "Giveaway: ACTIVE";
+                    btn.className = "w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition-all";
+                }
+                if(badge) {
+                    badge.innerText = "Active Online";
+                    badge.className = "text-sm font-bold mt-1 text-emerald-400 uppercase tracking-wide";
+                }
+            } else {
+                if(btn) {
+                    btn.innerText = "Giveaway: CLOSED";
+                    btn.className = "w-full bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition-all";
+                }
+                if(badge) {
+                    badge.innerText = "Closed / Ended";
+                    badge.className = "text-sm font-bold mt-1 text-red-400 uppercase tracking-wide";
+                }
+            }
+        }
+
+        function addNewGame() {
+            const title = document.getElementById('new-game-title').value.trim();
+            const image = document.getElementById('new-game-image').value.trim() || 'https://placehold.co/600x400/1e293b/38bdf8?text=New+Game';
+            const points = parseInt(document.getElementById('new-game-points').value) || 1000;
+
+            if (!title) {
+                alert("Please provide a game title.");
+                return;
+            }
+
+            const newGame = {
+                id: Date.now().toString(),
+                title: title,
+                image: image,
+                points: points
+            };
+
+            state.games.push(newGame);
+            saveState();
+            renderGames();
+
+            document.getElementById('new-game-title').value = '';
+            document.getElementById('new-game-image').value = '';
+            document.getElementById('new-game-points').value = '';
+            alert("New game published successfully!");
+        }
+
+        function resetAllPoints() {
+            if (confirm("Are you sure you want to reset all user points to zero for a new event?")) {
+                state.users = {};
+                if (state.currentUser) {
+                    state.points = 0;
+                    state.users[state.currentUser] = 0;
+                    document.getElementById('header-points').innerText = "0";
+                }
+                saveState();
+                renderAdminLeaderboard();
+                alert("Leaderboard successfully reset!");
+            }
+        }
+
+        function renderAdminLeaderboard() {
+            const tbody = document.getElementById('admin-leaderboard-body');
+            tbody.innerHTML = '';
+
+            const sortedUsers = Object.entries(state.users).sort((a, b) => b[1] - a[1]);
+
+            if (sortedUsers.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="p-4 text-center text-slate-500">No participants yet.</td></tr>`;
+                return;
+            }
+
+            sortedUsers.forEach(([username, pts], index) => {
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-900/50 transition-colors";
+                row.innerHTML = `
+                    <td class="p-3 font-bold text-blue-400">#${index + 1}</td>
+                    <td class="p-3 font-medium text-white">${username}</td>
+                    <td class="p-3 text-right font-bold text-emerald-400">${pts.toLocaleString()} pts</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
